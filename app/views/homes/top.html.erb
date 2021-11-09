@@ -1,4 +1,4 @@
-<div class="container mt-3">
+<div class="container">
   <div class="row">
     <div class="mx-auto col-sm-10 col-lg-8 col-xl-6">
       <h1>welcome to <i class="fas fa-book"></i><strong>Bookers</strong> !!</h1>
@@ -9,12 +9,12 @@
   </div>  
   <div class="row">
     <div class="col-5 mx-auto">
-      <%= link_to "Log in", " ", class: "btn btn-info btn-sm btn-block mb-3" %>
+      <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3" %>
     </div>
   </div>
   <div class="row">
     <div class="col-5 mx-auto">
-      <%= link_to "Sign up", " ", class: "btn btn-success btn-sm btn-block mb-3" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success btn-sm btn-block mb-3" %>
     </div>
   </div>
 </div>
