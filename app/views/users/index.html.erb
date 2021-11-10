@@ -26,22 +26,23 @@
       
       <h2>New Book</h2>
 
-      <%# <%= form_with model:@book, books_path, local:true do |f| %> 
+      <%= form_with model:@book, url: books_path, local:true do |f| %> 
 
-      <%# <div class="field">
+      <div class="field">
         <%= f.label :Title %>
-        <%# <%= f.text_field :title, class: "form-control" %> 
-      <%# </div> %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
 
-      <%# <div class="field">
+      <div class="field">
         <%= f.label :Opinion %>
-        <%# <%= f.text_area :body, class: "form-control" %> 
-      <%# </div> %>
-<%#  %>
-      <%# <div class="actions"> %>
-        <%# <%= f.submit "Create Book", class: "btn btn-success btn-sm" %> 
-      <%# </div> %> 
-    <%# </div> %>
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+      
+      <div class="actions">
+        <%= f.submit "Create Book", class: "btn btn-success btn-sm" %>
+      </div>
+      <% end %>
+    
     </div>
     
     <div class="col-8 offset-1">
@@ -57,9 +58,9 @@
         <tbody>
         <% @users.each do |user| %>
           <tr>
-            <th><%= attachment_image_tag user, :profile_image, :fill, 10, 10, fallback: "no-image-icon.jpg" %></th>
-            <th><%= user.name %></th>
-            <th><%= link_to "Show", user_path(user) %></th>
+            <td><%= attachment_image_tag user, :profile_image, :fill, 10, 10, fallback: "no-image-icon.jpg" %></td>
+            <td><%= user.name %></td>
+            <td><%= link_to "Show", user_path(user) %></td>
           </tr>
         <% end %>
         </tbody>
