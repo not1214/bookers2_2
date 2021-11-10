@@ -3,45 +3,10 @@
     <div class="col-3">
     
       <h2>User Info</h2>
-
-      <table class="table">
-        <tr>
-          <%= attachment_image_tag current_user, :profile_image, :fill, 30, 30, fallback: "no_image.jpg" %>
-        </tr>
-        <tr>
-          <th>name</th>
-          <th><%= current_user.name %></th>
-        </tr>
-        <tr>
-          <th>introduction</th>
-          <th><%= current_user.introduction %></th>
-        </tr>
-      </table>
-
-      <div>
-      <%= link_to edit_user_path(current_user) do %>
-        <button class="btn btn-block btn-outline-secondary"><i class="fas fa-user-cog"></i></button>
-      <% end %>
-      </div>
+      <%= render "users/info", user: current_user%>
       
       <h2>New Book</h2>
-
-      <%= form_with model:@book, url: books_path, local:true do |f| %> 
-
-      <div class="field">
-        <%= f.label :Title %>
-        <%= f.text_field :title, class: "form-control" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :Opinion %>
-        <%= f.text_area :body, class: "form-control" %>
-      </div>
-      
-      <div class="actions">
-        <%= f.submit "Create Book", class: "btn btn-success btn-sm" %>
-      </div>
-      <% end %>
+      <%= render "books/new", book: Book.new %>
     
     </div>
     

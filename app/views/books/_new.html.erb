@@ -1,0 +1,17 @@
+<%= form_with model:book, url:books_path, local:true do |f| %> 
+
+<div class="field">
+  <%= f.label :Title %>
+  <%= f.text_field :title, autofocus: true, autocomplete: "title", class: "form-control" %>
+</div>
+
+<div class="field">
+  <%= f.label :Opinion %>
+  <%= f.text_area :body, class: "form-control" %>
+</div>
+
+<div class="actions">
+  <%= f.submit "Create Book", class: "btn btn-success btn-sm" %>
+</div>
+
+<% end %>
