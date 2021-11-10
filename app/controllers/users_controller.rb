@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     if @user != current_user
-      flash[:alert] = "不正なアクセスです。"
+      flash.now[:alert] = "不正なアクセスです。"
       redirect_to users_path
     end
   end
@@ -19,10 +19,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = "You have updated user information successfully"
+      flash.now[:notice] = "You have updated user information successfully"
       redirect_to user_path(@user)
     else
-      flash[:alert] = "You have failed"
+      flash.now[:alert] = "You have failed"
       render :edit
     end
   end

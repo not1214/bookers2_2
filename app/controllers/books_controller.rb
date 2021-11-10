@@ -2,20 +2,23 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    @book = Book.new
   end
 
   def show
     @book = Book.find(params[:id])
+    @comment = Comment.new
   end
 
   def create
-    book = Book.new(book_params)
-    book.user_id = current_user.id
-    if book.save
-      flash[:notice] = "You have created book successfully"
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+    if @book.save
+      flash.now[:notice] = "You have created book successfully"
       redirect_to book_path(book.id)
     else
-      flash[:alert] = "You have failed"
+      @books = Book.all
+      flash.now[:alert] = "You have failed"
       render :index
     end
   end
@@ -23,21 +26,28 @@ class BooksController < ApplicationController
   def edit
     @book = Book.find(params[:id])
     if @book.user != current_user
-      flash[:alert] = "不正なアクセスです"
+      flash.now[:alert] = "不正なアクセスです"
       redirect_to books_path
     end
   end
 
   def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(book)
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      flash.now[:notice] = "You have updated book successfully"
+      redirect_to book_path(book)
+    else
+      flash.now[:alert] = "You have failed"
+      render :edit
+    end
   end
 
   def destroy
     book = Book.find(params[:id])
-    book.destroy
-    redirect_to books_path
+    if book.destroy
+      flash.now[:notice] = "You have deleted book successfully"
+      redirect_to books_path
+    end
   end
 
   private
